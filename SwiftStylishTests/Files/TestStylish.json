@@ -1,0 +1,14 @@
+{
+    "@classes": {
+        ".root1": {
+            ".class1": {
+                "background-color": "#ff0000",
+                "color": "#ff0"
+            },
+            ".class2": {
+                "@preload": ".root.class1",
+                "background-color": "#ff0000"
+            }
+        }
+    }
+}

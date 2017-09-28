@@ -1,0 +1,7 @@
+{
+    "@fonts":{
+        "title_font": { "name": "Arial", "size": 16 },
+        "selected_cell_font": { "name": "Arial", "size": 12 }
+    }
+    
+}

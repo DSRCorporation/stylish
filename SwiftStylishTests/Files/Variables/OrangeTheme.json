@@ -1,0 +1,17 @@
+{
+    
+    "@colors":{
+        "light_background": "#6ef2d1",
+        "dark_background": "#0e9a8e"
+    },
+    "@fonts":{
+        "title_font": { "name": "Arial", "size": 16 },
+        "selected_cell_font": { "name": "Arial", "size": 12 }
+    },
+    "@numbers":
+    {
+        "label_number_of_lines": 3,
+        "pading": 10,
+        "width": 170
+    }
+}

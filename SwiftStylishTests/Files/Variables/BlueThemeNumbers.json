@@ -1,0 +1,9 @@
+{
+    "_description": "blue theme variables",
+    "@numbers":
+    {
+        "label_number_of_lines": 3,
+        "pading": 10,
+        "width": 170
+    }
+}
