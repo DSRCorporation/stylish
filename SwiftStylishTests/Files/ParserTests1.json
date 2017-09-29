@@ -1,0 +1,11 @@
+{
+    "@classes": {
+        "_description": "this description should be ignored",
+        ".additional": {
+            ".class2": {
+                "@preload": ".root.class1",
+                "background-color": "#ff0000"
+            }
+        }
+    }
+}

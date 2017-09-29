@@ -1,0 +1,48 @@
+{
+    "@classes":{
+        ".border-width": {
+            "@state:normal": {
+                "border-width": 1.0
+            },
+            "@state:highlighted": {
+                "border-width": 2.0
+            },
+            "@state:disabled": {
+                "border-width": 3.0
+            }
+        },
+        ".border-color": {
+            "@state:normal": {
+                "border-color": "#ff0000"
+            },
+            "@state:highlighted": {
+                "border-color": "#00ff00"
+            },
+            "@state:disabled": {
+                "border-color": "#0000ff"
+            }
+        },
+        ".corner-radius": {
+            "@state:normal": {
+                "corner-radius": 1.0
+            },
+            "@state:highlighted": {
+                "corner-radius": 2.0
+            },
+            "@state:disabled": {
+                "corner-radius": 3.0
+            }
+        },
+        ".background-color": {
+            "@state:normal": {
+                "background-color": "#ff0000"
+            },
+            "@state:highlighted": {
+                "background-color": "#00ff00"
+            },
+            "@state:disabled": {
+                "background-color": "#0000ff"
+            }
+        }
+    }
+}

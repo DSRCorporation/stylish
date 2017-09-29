@@ -1,0 +1,378 @@
+{
+    "@classes":
+    {
+        ".background-color":
+        {
+            "background-color": "#ff0000"
+        },
+    
+        ".alpha":
+        {
+            "alpha": 0.15
+        },
+        
+        ".opacity":
+        {
+            "opacity": 0.45
+        },
+        
+        ".hidden":
+        {
+            "hidden": true
+        },
+        
+        ".clips-to-bounds":
+        {
+            "clips-to-bounds": true
+        },
+        
+        ".user-interaction-enabled":
+        {
+            "user-interaction-enabled": true
+        },
+        
+        ".transform":
+        {
+            "transform":
+            {
+                "type": "scale",
+                "x": 2.0,
+                "y": 3.0
+            },
+            
+            ".scale":
+            {
+                "transform":
+                {
+                    "type": "scale",
+                    "x": 2.0,
+                    "y": 3.0
+                }
+            },
+            
+            ".rotate":
+            {
+                "transform":
+                {
+                    "type": "rotate",
+                    "angle": 90.0
+                }
+            },
+            
+            ".translate":
+            {
+                "transform":
+                {
+                    "type": "translate",
+                    "x": 2.0,
+                    "y": 3.0
+                }
+            }
+        },
+        
+        ".shadow":
+        {
+            "shadow":
+            {
+                "offsetX": 2.0,
+                "offsetY": 3.0,
+                "color": "#ff0000",
+                "radius": 10.0,
+                "opacity": 0.8
+            }
+        },
+    
+        ".attributed-text": {
+            "attributed-text": {
+                "text": "String1",
+                "attributes": [
+                               {
+                               "substring": "all",
+                               "attributes": {
+                               "text-color": "#ff0000"
+                               }
+                            }]
+            },
+        },
+        
+        ".attributed-placeholder": {
+            "attributed-placeholder": {
+                "text": "String1",
+                "attributes": [
+                               {
+                               "substring": "all",
+                               "attributes": {
+                               "text-color": "#ff0000"
+                               }
+                               }]
+            },
+        },
+        
+        ".border-color":
+        {
+            "border-color": "#00ff00"
+        },
+        
+        ".border-width":
+        {
+            "border-width": 8.3
+        },
+        
+        ".separator-color":
+        {
+            "separator-color": "#ff0000"
+        },
+        
+        ".back-indicator-image":
+        {
+            "back-indicator-image":
+            {
+                "named": "testImage1",
+                "rendering-mode": "always-original"
+            }
+        },
+        
+        ".corner-radius":
+        {
+            "corner-radius": 10.3
+        },
+        
+        ".rendering-mode":
+        {
+            "rendering-mode": "always-template"
+        },
+        
+        ".bar-tint-color":
+        {
+            "bar-tint-color": "#ff0000"
+        },
+        
+        ".tint-color":
+        {
+            "tint-color": "#ff0000",
+            
+            ".switch": {
+                "@state:selected":
+                {
+                    "tint-color": "#0000ff"
+                },
+                
+                "@state:normal":
+                {
+                    "tint-color": "#00ff00"
+                }
+            },
+            
+            ".page-control":
+            {
+                "@state:selected":
+                {
+                    "tint-color": "#ff0000"
+                },
+                
+                "@state:normal":
+                {
+                    "tint-color": "#0000ff"
+                }
+            }
+        },
+        
+        ".translucent":
+        {
+            "translucent": true
+        },
+        
+        ".text":
+        {
+            "text": "test string"
+        },
+        
+        ".button-title":
+        {
+            "@state:normal":
+            {
+                "text": "test string"
+            }
+        },
+        
+        ".text-color":
+        {
+            "text-color": "#ff0000",
+            
+            ".button":
+            {
+                "@state:normal":
+                {
+                    "text-color": "#ff0000"
+                },
+                
+                "@state:selected":
+                {
+                    "text-color": "#0000FF"
+                }
+            }
+        },
+        
+        ".text-alignment":
+        {
+            "text-alignment": "center"
+        },
+        
+        ".selectable":
+        {
+            "selectable": true
+        },
+        
+        ".scroll-enabled":
+        {
+            "scroll-enabled": true
+        },
+        
+        ".placeholder":
+        {
+            "placeholder": "test string"
+        },
+        
+        ".number-of-lines":
+        {
+            "number-of-lines": 12
+        },
+        
+        ".font":
+        {
+            "font":
+            {
+                "name": "Arial",
+                "size": 12
+            }
+        },
+        
+        ".system-font":
+        {
+            "font":
+            {
+                "name": "System",
+                "size": 12
+            }
+        },
+        
+        ".content-mode":
+        {
+            "content-mode": "aspect-fill"
+        },
+        
+        ".selected-image":
+        {
+            "selected-image": "testImage1"
+        },
+        
+        ".text-attributes":
+        {
+            "@state:normal":
+            {
+                "text-attributes":
+                {
+                    "font":
+                    {
+                        "name": "ArialMT",
+                        "size": 12
+                    },
+                
+                    "text-color": "#ff0000"
+                },
+            
+                "@state:selected":
+                {
+                    "text-attributes":
+                    {
+                        "font":
+                        {
+                            "name": "Helvetica",
+                            "size": 12
+                        },
+                    
+                        "text-color": "#0000FF"
+                    }
+                }
+            }
+        },
+    
+        ".titles":
+        {
+            "titles": ["firstItem", "secondItem", "thirdItem"]
+        },
+    
+        ".divider-image-with-image":
+        {
+            "divider-image":
+            [{
+                "image": "testImage1",
+                "leftSegmentState": "selected",
+                "rightSegmentState": "normal",
+                "bar-metrics": "default"
+             }]
+        },
+        
+        ".content-alignment":
+        {
+            "vertical-alignment": "bottom",
+            "horizontal-alignment": "right"
+        },
+
+        ".image":
+        {
+            "image": "testImage1",
+            ".image-view":
+            {
+                "@state:normal":
+                {
+                    "image": "testImage1"
+                },
+            
+                "@state:highlighted":
+                {
+                    "image": "testImage2"
+                }
+            },
+        
+            ".button": {
+                "@state:normal":
+                {
+                    "image": "testImage1",
+                    "text-color": "#ff0000"
+                },
+                
+                "@state:highlighted":
+                {
+                    "image": "testImage2"
+                },
+                
+                "@state:selected":
+                {
+                    "image": "testImage3",
+                    "text-color": "#0000FF"
+                },
+                
+                "@state:disabled":
+                {
+                    "image": "testImage4"
+                }
+            },
+        
+            ".value-assets":
+            {
+                "image": "testImage1"
+            },
+        
+            ".value-color":
+            {
+                "image":
+                {
+                    "color": "#ff0000",
+                    "width": 1.0,
+                    "height": 100.0
+                }
+            }
+        }
+    }
+}

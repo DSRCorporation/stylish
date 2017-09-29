@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BE21002B-DB6E-4DED-B436-6B1DA9ED9DF7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EDE6963EAD65D40B19732FE7729EEE6BBD5086AC</key>
+		<string>git.dsr-company.com.ru:common/swift-stylish.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SwiftStylish.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EDE6963EAD65D40B19732FE7729EEE6BBD5086AC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git.dsr-company.com.ru:common/swift-stylish.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EDE6963EAD65D40B19732FE7729EEE6BBD5086AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EDE6963EAD65D40B19732FE7729EEE6BBD5086AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SwiftStylish</string>
+		</dict>
+	</array>
+</dict>
+</plist>

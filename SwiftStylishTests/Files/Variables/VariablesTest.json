@@ -1,0 +1,16 @@
+{
+    "@classes":
+    {
+        ".viewWithVariable":
+        {
+            "background-color": "light_background"
+        },
+        
+        ".label":
+        {
+            "font": "title_font",
+            "background-color": "light_background",
+            "number-of-lines": "label_number_of_lines"
+        }
+    }
+}
