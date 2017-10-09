@@ -32,7 +32,7 @@ class AttributedText: BaseProviderTests
         
         let attr = NSMutableAttributedString(string: "String1")
         let range = NSRange(location: 0, length: ("String1" as NSString).length)
-        attr.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        attr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
         
         XCTAssertNotNil(label.attributedText)
         XCTAssert(label.attributedText!.isEqual(to: attr))

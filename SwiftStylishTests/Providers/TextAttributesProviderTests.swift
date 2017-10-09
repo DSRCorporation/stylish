@@ -35,15 +35,15 @@ class TextAttributesProviderTests: BaseProviderTests
         }
         
         let normalAttrs = segmentedControl.titleTextAttributes(for: .normal)
-        let fontName1 = (normalAttrs?[NSFontAttributeName] as? UIFont)?.fontName
-        let color1 = (normalAttrs?[NSForegroundColorAttributeName] as? UIColor)
+        let fontName1 = (normalAttrs?[NSAttributedStringKey.font] as? UIFont)?.fontName
+        let color1 = (normalAttrs?[NSAttributedStringKey.foregroundColor] as? UIColor)
         
         XCTAssert(fontName1 == "ArialMT")
         XCTAssert(color1 == UIColor.red)
         
         let selectedAttrs = segmentedControl.titleTextAttributes(for: .selected)
-        let fontName2 = (selectedAttrs?[NSFontAttributeName] as? UIFont)?.fontName
-        let color2 = (selectedAttrs?[NSForegroundColorAttributeName] as? UIColor)
+        let fontName2 = (selectedAttrs?[NSAttributedStringKey.font] as? UIFont)?.fontName
+        let color2 = (selectedAttrs?[NSAttributedStringKey.foregroundColor] as? UIColor)
         
         XCTAssert(fontName2 == "Helvetica")
         XCTAssert(color2 == UIColor.blue)
@@ -55,8 +55,8 @@ class TextAttributesProviderTests: BaseProviderTests
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         
         let normalAttrs1 = navBar.titleTextAttributes
-        let fontName1 = (normalAttrs1?[NSFontAttributeName] as? UIFont)?.fontName
-        let color1 = normalAttrs1?[NSForegroundColorAttributeName] as? UIColor
+        let fontName1 = (normalAttrs1?[NSAttributedStringKey.font] as? UIFont)?.fontName
+        let color1 = normalAttrs1?[NSAttributedStringKey.foregroundColor] as? UIColor
         
         XCTAssert(fontName1 != "ArialMT")
         XCTAssert(color1 != UIColor.red)
@@ -72,8 +72,8 @@ class TextAttributesProviderTests: BaseProviderTests
         
         let normalAttrs2 = navBar.titleTextAttributes
         XCTAssertNotNil(normalAttrs2)
-        let fontName2 = (normalAttrs2![NSFontAttributeName] as! UIFont).fontName
-        let color2 = (normalAttrs2![NSForegroundColorAttributeName] as! UIColor)
+        let fontName2 = (normalAttrs2![NSAttributedStringKey.font] as! UIFont).fontName
+        let color2 = (normalAttrs2![NSAttributedStringKey.foregroundColor] as! UIColor)
         
         XCTAssert(fontName2 == "ArialMT")
         XCTAssert(color2 == UIColor.red)
@@ -93,15 +93,15 @@ class TextAttributesProviderTests: BaseProviderTests
         }
         
         let normalAttrs = barButtonItem.titleTextAttributes(for: .normal)
-        let fontName1 = (normalAttrs?[NSFontAttributeName] as? UIFont)?.fontName
-        let color1 = (normalAttrs?[NSForegroundColorAttributeName] as? UIColor)
+        let fontName1 = (normalAttrs?[NSAttributedStringKey.font.rawValue] as? UIFont)?.fontName
+        let color1 = (normalAttrs?[NSAttributedStringKey.foregroundColor.rawValue] as? UIColor)
         
         XCTAssert(fontName1 == "ArialMT")
         XCTAssert(color1 == UIColor.red)
         
         let selectedAttrs = barButtonItem.titleTextAttributes(for: .selected)
-        let fontName2 = (selectedAttrs?[NSFontAttributeName] as? UIFont)?.fontName
-        let color2 = (selectedAttrs?[NSForegroundColorAttributeName] as? UIColor)
+        let fontName2 = (selectedAttrs?[NSAttributedStringKey.font.rawValue] as? UIFont)?.fontName
+        let color2 = (selectedAttrs?[NSAttributedStringKey.foregroundColor.rawValue] as? UIColor)
         
         XCTAssert(fontName2 == "Helvetica")
         XCTAssert(color2 == UIColor.blue)
