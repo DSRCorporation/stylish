@@ -11,9 +11,9 @@ import UIKit
 */
 class TextAttributesProvider: BaseProvider
 {
-    fileprivate func merged(current: [String: Any], new: [String: Any]) -> [String: Any]
+    fileprivate func merged(current: [NSAttributedStringKey: Any], new: [NSAttributedStringKey: Any]) -> [NSAttributedStringKey: Any]
     {
-        var merged: [String: Any] = current
+        var merged: [NSAttributedStringKey: Any] = current
         
         for (k,v) in new
         {
@@ -30,8 +30,8 @@ extension TextAttributesProvider: SegmentedControlProviderProtocol
     {
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
         let textAttributes = try value.toTextAttributes()
-        let currentTextAttributes = segmentedControl.titleTextAttributes(for:item.state.toControlState()) ?? [:]
-        let newTextAttributes = self.merged(current: currentTextAttributes as! [String : Any], new: textAttributes)
+        let currentTextAttributes = segmentedControl.titleTextAttributes(for:item.state.toControlState()) as? [NSAttributedStringKey: Any] ?? [:]
+        let newTextAttributes = self.merged(current: currentTextAttributes, new: textAttributes)
         segmentedControl.setTitleTextAttributes(newTextAttributes, for: item.state.toControlState())
     }
 }
@@ -60,7 +60,16 @@ extension TextAttributesProvider: BarButtonItemProviderProtocol
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
         let textAttributes = try value.toTextAttributes()
         let currentTextAttributes = barButtonItem.titleTextAttributes(for: item.state.toControlState()) ?? [:]
-        let newTextAttributes = self.merged(current: currentTextAttributes, new: textAttributes)
+
+
+        var converted = [NSAttributedStringKey: Any]()
+
+        currentTextAttributes.forEach { (key, value) in
+            let newKey = NSAttributedStringKey(rawValue: key)
+            converted[newKey] = value
+        }
+        
+        let newTextAttributes = self.merged(current: converted, new: textAttributes)
         barButtonItem.setTitleTextAttributes(newTextAttributes, for: item.state.toControlState())
     }
 }

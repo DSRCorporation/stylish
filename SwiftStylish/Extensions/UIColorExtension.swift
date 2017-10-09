@@ -1,185 +1,149 @@
 //
-//  UIColorExtension.swift
-//  HEXColor
+//  HexColors.swift
 //
+//  Created by Marius Landwehr on 25.12.16.
+//  The MIT License (MIT)
+//  Copyright (c) 2016 Marius Landwehr marius.landwehr@gmail.com
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+#if os(iOS) || os(watchOS) || os(tvOS)
+    import UIKit
+    public typealias HexColor = UIColor
+#else
+    import Cocoa
+    public typealias HexColor = NSColor
+#endif
 
-import UIKit
 
-/**
- MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
- UnableToScanHexValue:      "Scan hex error"
- MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
- */
-enum UIColorInputError : Error
-{
-    case missingHashMarkAsPrefix,
-    unableToScanHexValue,
-    mismatchedHexStringLength
-}
+public extension HexColor {
+    typealias Hex = String
 
-public extension UIColor
-{
-    /**
-     The shorthand three-digit hexadecimal representation of color.
-     #RGB defines to the color #RRGGBB.
-     
-     - parameter hex3: Three-digit hexadecimal value.
-     - parameter alpha: 0.0 - 1.0. The default is 1.0.
-     */
-    convenience init(hex3: UInt16, alpha: CGFloat = 1)
-    {
-        let divisor = CGFloat(15)
-        let red     = CGFloat((hex3 & 0xF00) >> 8) / divisor
-        let green   = CGFloat((hex3 & 0x0F0) >> 4) / divisor
-        let blue    = CGFloat( hex3 & 0x00F      ) / divisor
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    /**
-     The shorthand four-digit hexadecimal representation of color with alpha.
-     #RGBA defines to the color #RRGGBBAA.
-     
-     - parameter hex4: Four-digit hexadecimal value.
-     */
-    convenience init(hex4: UInt16)
-    {
-        let divisor = CGFloat(15)
-        let red     = CGFloat((hex4 & 0xF000) >> 12) / divisor
-        let green   = CGFloat((hex4 & 0x0F00) >>  8) / divisor
-        let blue    = CGFloat((hex4 & 0x00F0) >>  4) / divisor
-        let alpha   = CGFloat( hex4 & 0x000F       ) / divisor
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    /**
-     The six-digit hexadecimal representation of color of the form #RRGGBB.
-     
-     - parameter hex6: Six-digit hexadecimal value.
-     */
-    convenience init(hex6: UInt32, alpha: CGFloat = 1)
-    {
-        let divisor = CGFloat(255)
-        let red     = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
-        let green   = CGFloat((hex6 & 0x00FF00) >>  8) / divisor
-        let blue    = CGFloat( hex6 & 0x0000FF       ) / divisor
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    /**
-     The six-digit hexadecimal representation of color with alpha of the form #RRGGBBAA.
-     
-     - parameter hex8: Eight-digit hexadecimal value.
-     */
-    convenience init(hex8: UInt32)
-    {
-        let divisor = CGFloat(255)
-        let red     = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
-        let green   = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
-        let blue    = CGFloat((hex8 & 0x0000FF00) >>  8) / divisor
-        let alpha   = CGFloat( hex8 & 0x000000FF       ) / divisor
-        self.init(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    /**
-     The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, throws error.
-     
-     - parameter rgba: String value.
-     */
-    convenience init(rgba_throws rgba: String) throws
-    {
-        guard rgba.hasPrefix("#") else
-        {
-            throw UIColorInputError.missingHashMarkAsPrefix
-        }
-        
-        let hexString: String = rgba.substring(from: rgba.characters.index(rgba.startIndex, offsetBy: 1))
-        var hexValue:  UInt32 = 0
-        
-        guard Scanner(string: hexString).scanHexInt32(&hexValue) else
-        {
-            throw UIColorInputError.unableToScanHexValue
-        }
-        
-        switch (hexString.characters.count)
-        {
-        case 3:
-            self.init(hex3: UInt16(hexValue))
-        case 4:
-            self.init(hex4: UInt16(hexValue))
-        case 6:
-            self.init(hex6: hexValue)
-        case 8:
-            self.init(hex8: hexValue)
-        default:
-            throw UIColorInputError.mismatchedHexStringLength
-        }
-    }
-    
-    /**
-     The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, fails to default color.
-     
-     - parameter rgba: String value.
-     */
-    convenience init(_ rgba: String, defaultColor: UIColor = UIColor.clear)
-    {
-        guard let color = try? UIColor(rgba_throws: rgba) else
-        {
-            self.init(cgColor: defaultColor.cgColor)
-            return
+    convenience init?(_ hex: Hex, alpha: CGFloat? = nil) {
+
+        guard let hexType = Type(from: hex), let components = hexType.components() else {
+            return nil
         }
 
-        self.init(cgColor: color.cgColor)
+        #if os(iOS) || os(watchOS) || os(tvOS)
+            self.init(red: components.red, green: components.green, blue: components.blue, alpha: alpha ?? components.alpha)
+        #else
+            self.init(calibratedRed: components.red, green: components.green, blue: components.blue, alpha: alpha ?? components.alpha)
+        #endif
     }
-    
-    /**
-     Hex string of a UIColor instance.
-     
-     - parameter includeAlpha: Whether the alpha should be included.
-     */
-    func hexString(_ includeAlpha: Bool = true) -> String
-    {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        if (includeAlpha)
-        {
-            return String(format: "#%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255))
+
+    /// The string hex value representation of the current color
+    var hex: Hex {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0, rgb: Int
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        if a == 1 { // no alpha value set, we are returning the short version
+            rgb = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+            return String(format: "#%06x", rgb)
+        } else {
+            rgb = (Int)(r*255)<<24 | (Int)(g*255)<<16 | (Int)(b*255)<<8 | (Int)(a*255)<<0
+            return String(format: "#%08x", rgb)
         }
-        else
-        {
-            return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
+    }
+
+    private enum `Type` {
+
+        case RGBshort(rgb: Hex)
+        case RGBshortAlpha(rgba: Hex)
+        case RGB(rgb: Hex)
+        case RGBA(rgba: Hex)
+
+        init?(from hex: Hex) {
+
+            var hexString = hex
+            hexString.removeHashIfNecessary()
+
+            guard let t = Type.transform(hex: hexString) else {
+                return nil
+            }
+
+            self = t
+        }
+
+        static func transform(hex string: Hex) -> Type? {
+            switch string.characters.count {
+            case 3:
+                return .RGBshort(rgb: string)
+            case 4:
+                return .RGBshortAlpha(rgba: string)
+            case 6:
+                return .RGB(rgb: string)
+            case 8:
+                return .RGBA(rgba: string)
+            default:
+                return nil
+            }
+        }
+
+        var value: Hex {
+            switch self {
+            case .RGBshort(let rgb):
+                return rgb
+            case .RGBshortAlpha(let rgba):
+                return rgba
+            case .RGB(let rgb):
+                return rgb
+            case .RGBA(let rgba):
+                return rgba
+            }
+        }
+
+        typealias rgbComponents = (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+        func components() -> rgbComponents? {
+
+            var hexValue: UInt32 = 0
+            guard Scanner(string: value).scanHexInt32(&hexValue) else {
+                return nil
+            }
+
+            let r, g, b, a, divisor: CGFloat
+
+            switch self {
+            case .RGBshort(_):
+                divisor = 15
+                r = CGFloat((hexValue & 0xF00) >> 8) / divisor
+                g = CGFloat((hexValue & 0x0F0) >> 4) / divisor
+                b = CGFloat( hexValue & 0x00F) / divisor
+                a = 1
+            case .RGBshortAlpha(_):
+                divisor = 15
+                r = CGFloat((hexValue & 0xF000) >> 12) / divisor
+                g = CGFloat((hexValue & 0x0F00) >> 8) / divisor
+                b = CGFloat((hexValue & 0x00F0) >> 4) / divisor
+                a = CGFloat( hexValue & 0x000F) / divisor
+            case .RGB(_):
+                divisor = 255
+                r = CGFloat((hexValue & 0xFF0000) >> 16) / divisor
+                g = CGFloat((hexValue & 0x00FF00) >> 8) / divisor
+                b = CGFloat( hexValue & 0x0000FF) / divisor
+                a = 1
+            case .RGBA(_):
+                divisor = 255
+                r = CGFloat((hexValue & 0xFF000000) >> 24) / divisor
+                g = CGFloat((hexValue & 0x00FF0000) >> 16) / divisor
+                b = CGFloat((hexValue & 0x0000FF00) >> 8) / divisor
+                a = CGFloat( hexValue & 0x000000FF) / divisor
+            }
+
+            return (red: r, green: g, blue: b, alpha: a)
         }
     }
 }
 
-extension String
-{
-    /**
-     Convert argb string to rgba string.
-     */
-    func argb2rgba() -> String?
-    {
-        guard self.hasPrefix("#") else
-        {
-            return nil
-        }
-        
-        let hexString: String = self.substring(from: self.characters.index(self.startIndex, offsetBy: 1))
-        switch (hexString.characters.count)
-        {
-        case 4:
-            return "#"
-                + hexString.substring(from: self.characters.index(self.startIndex, offsetBy: 1))
-                + hexString.substring(to: self.characters.index(self.startIndex, offsetBy: 1))
-        case 8:
-            return "#"
-                + hexString.substring(from: self.characters.index(self.startIndex, offsetBy: 2))
-                + hexString.substring(to: self.characters.index(self.startIndex, offsetBy: 2))
-        default:
-            return nil
+private extension String {
+
+    mutating func removeHashIfNecessary() {
+        if hasPrefix("#") {
+            self = replacingOccurrences(of: "#", with: "")
         }
     }
 }
