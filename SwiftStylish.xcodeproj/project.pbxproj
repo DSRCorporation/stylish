@@ -83,6 +83,10 @@
 		5D8134C61F59729900E7BDCD /* VariablesTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D8134B51F59729900E7BDCD /* VariablesTest.json */; };
 		5D8134C81F59782000E7BDCD /* OrangeTheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D8134C71F59782000E7BDCD /* OrangeTheme.json */; };
 		5D8134CA1F5979A000E7BDCD /* BlueThemeNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D8134C91F5979A000E7BDCD /* BlueThemeNumbers.json */; };
+		5DA2CCC51FA7113E009C7E82 /* TrackTintColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2CCC41FA7113E009C7E82 /* TrackTintColorProvider.swift */; };
+		5DA2CCC71FA7117D009C7E82 /* ProgressTintColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2CCC61FA7117D009C7E82 /* ProgressTintColorProvider.swift */; };
+		5DA2CCC91FA7150B009C7E82 /* ProgressTintColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2CCC81FA7150B009C7E82 /* ProgressTintColorProviderTests.swift */; };
+		5DA2CCCB1FA71519009C7E82 /* TrackTintColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2CCCA1FA71519009C7E82 /* TrackTintColorProviderTests.swift */; };
 		7B3EF0AA1DA64F3B00EAADB3 /* SwiftStylish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3EF0A01DA64F3B00EAADB3 /* SwiftStylish.framework */; };
 		7B3EF0B11DA64F3B00EAADB3 /* SwiftStylish.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3EF0A31DA64F3B00EAADB3 /* SwiftStylish.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B3EF0C11DA660C200EAADB3 /* LoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3EF0C01DA660C200EAADB3 /* LoaderTests.swift */; };
@@ -215,6 +219,10 @@
 		5D8134B51F59729900E7BDCD /* VariablesTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VariablesTest.json; sourceTree = "<group>"; };
 		5D8134C71F59782000E7BDCD /* OrangeTheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OrangeTheme.json; sourceTree = "<group>"; };
 		5D8134C91F5979A000E7BDCD /* BlueThemeNumbers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BlueThemeNumbers.json; sourceTree = "<group>"; };
+		5DA2CCC41FA7113E009C7E82 /* TrackTintColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTintColorProvider.swift; sourceTree = "<group>"; };
+		5DA2CCC61FA7117D009C7E82 /* ProgressTintColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTintColorProvider.swift; sourceTree = "<group>"; };
+		5DA2CCC81FA7150B009C7E82 /* ProgressTintColorProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTintColorProviderTests.swift; sourceTree = "<group>"; };
+		5DA2CCCA1FA71519009C7E82 /* TrackTintColorProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTintColorProviderTests.swift; sourceTree = "<group>"; };
 		7B3EF0A01DA64F3B00EAADB3 /* SwiftStylish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftStylish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B3EF0A31DA64F3B00EAADB3 /* SwiftStylish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftStylish.h; sourceTree = "<group>"; };
 		7B3EF0A41DA64F3B00EAADB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,6 +344,7 @@
 				7B5E464D1DA7D26900E8B47E /* NumberOfLinesProvider.swift */,
 				557424561DAA935C000F770E /* OpacityProvider.swift */,
 				7B5E464A1DA7D13C00E8B47E /* PlaceholderProvider.swift */,
+				5DA2CCC61FA7117D009C7E82 /* ProgressTintColorProvider.swift */,
 				7B83779B1E014D0900558921 /* RenderingModeProvider.swift */,
 				7B5E466B1DA7D30E00E8B47E /* ScrollEnabledProvider.swift */,
 				7B5E466E1DA7D31800E8B47E /* SelectableProvider.swift */,
@@ -349,6 +358,7 @@
 				7B5E46441DA7D07B00E8B47E /* TextProvider.swift */,
 				7B5E46561DA7D28900E8B47E /* TintColorProvider.swift */,
 				3E9A7DF01DE869C000758F2F /* TitlesProvider.swift */,
+				5DA2CCC41FA7113E009C7E82 /* TrackTintColorProvider.swift */,
 				7B5E46861DA7D3D600E8B47E /* TransformProvider.swift */,
 				7B5E46591DA7D29100E8B47E /* TranslucentProvider.swift */,
 				5D81344D1F5946F400E7BDCD /* VerticalAlignmentProvider.swift */,
@@ -380,6 +390,7 @@
 				5D81346B1F59725200E7BDCD /* OpacityProviderTests.swift */,
 				5D81346C1F59725200E7BDCD /* PlaceholderProviderTests.swift */,
 				5D81346D1F59725200E7BDCD /* RenderingModeProviderTests.swift */,
+				5DA2CCC81FA7150B009C7E82 /* ProgressTintColorProviderTests.swift */,
 				5D81346E1F59725200E7BDCD /* ScrollEnabledProviderTests.swift */,
 				5D81346F1F59725200E7BDCD /* SelectableProviderTests.swift */,
 				5D8134701F59725200E7BDCD /* SelectedImageProviderTest.swift */,
@@ -391,6 +402,7 @@
 				5D8134761F59725200E7BDCD /* TextProviderTests.swift */,
 				5D8134771F59725200E7BDCD /* TintColorProviderTests.swift */,
 				5D8134781F59725200E7BDCD /* TitlesProviderTests.swift */,
+				5DA2CCCA1FA71519009C7E82 /* TrackTintColorProviderTests.swift */,
 				5D8134791F59725200E7BDCD /* TransformProviderTests.swift */,
 				5D81347A1F59725200E7BDCD /* TranslucentProviderTests.swift */,
 				5D81349D1F59728300E7BDCD /* VerticalAlignmentProviderTests.swift */,
@@ -661,6 +673,7 @@
 				7B5E46841DA7D3CD00E8B47E /* ClipsToBoundsProvider.swift in Sources */,
 				557424571DAA935C000F770E /* OpacityProvider.swift in Sources */,
 				7B5E46541DA7D27F00E8B47E /* ShadowProvider.swift in Sources */,
+				5DA2CCC51FA7113E009C7E82 /* TrackTintColorProvider.swift in Sources */,
 				555F24C51DAD03C5005C3900 /* Errors.swift in Sources */,
 				7B5E468A1DA7D3DE00E8B47E /* UserInteractionEnabled.swift in Sources */,
 				7B5E46631DA7D2AF00E8B47E /* EditableProvider.swift in Sources */,
@@ -704,6 +717,7 @@
 				5534D9E91DACD607009BF4D9 /* SwiftStylisher.swift in Sources */,
 				7B5E46481DA7D0B800E8B47E /* AttributedTextProvider.swift in Sources */,
 				5D8134491F5858EA00E7BDCD /* AttributedPlaceholderProvider.swift in Sources */,
+				5DA2CCC71FA7117D009C7E82 /* ProgressTintColorProvider.swift in Sources */,
 				7B41D8481F5425A20059C4F1 /* PlistLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +742,8 @@
 				5D8134931F59725200E7BDCD /* TextAlignmentProviderTests.swift in Sources */,
 				5D8134801F59725200E7BDCD /* BarTintColorProviderTests.swift in Sources */,
 				5D81349B1F59725200E7BDCD /* UserInteractionEnabledTests.swift in Sources */,
+				5DA2CCC91FA7150B009C7E82 /* ProgressTintColorProviderTests.swift in Sources */,
+				5DA2CCCB1FA71519009C7E82 /* TrackTintColorProviderTests.swift in Sources */,
 				5D8134871F59725200E7BDCD /* FontProviderTests.swift in Sources */,
 				5D81348B1F59725200E7BDCD /* OpacityProviderTests.swift in Sources */,
 				5D8134811F59725200E7BDCD /* BorderColorProviderTests.swift in Sources */,
@@ -927,6 +943,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3N6VFBBUVB;
 				INFOPLIST_FILE = SwiftStylishTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -941,6 +958,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3N6VFBBUVB;
 				INFOPLIST_FILE = SwiftStylishTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

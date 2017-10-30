@@ -21,6 +21,16 @@
             "hidden": true
         },
         
+        ".track-tint-color":
+        {
+            "track-tint-color": "#ff0000"
+        },
+        
+        ".progress-tint-color":
+        {
+            "progress-tint-color": "#ff0000"
+        },
+        
         ".clips-to-bounds":
         {
             "clips-to-bounds": true
@@ -264,6 +274,31 @@
         ".selected-image":
         {
             "selected-image": "testImage1"
+        },
+        
+        ".fontWithDescriptor":
+        {
+            "font":
+            {
+                "name": "ArialMT",
+                "size": 14,
+                "descriptor":{
+                    "symbolic-traits": ["traitBold", "traitItalic"]
+                }
+            }
+        },
+        
+        ".systemFontWithDescriptor":
+        {
+            "font":
+            {
+                "name": "ArialMT",
+                "size": 12,
+                "weight": "bold",
+                "descriptor":{
+                    "symbolic-traits": ["traitItalic"]
+                }
+            }
         },
         
         ".text-attributes":

@@ -39,12 +39,10 @@ class StyleRepository
     {
         for (k,v) in repository.classes
         {
-            if self.classes[k] != nil
+            if self.classes[k] == nil
             {
-                assertionFailure("You have the same style classes in different repositories(\(k)).")
+                self.classes.updateValue(v, forKey: k)
             }
-            
-            self.classes.updateValue(v, forKey: k)
         }
     }
     
@@ -65,5 +63,6 @@ class StyleRepository
         self.providerManager.registerLayerProviders()
         self.providerManager.registerBehaviorProvider()
         self.providerManager.registerImageProviders()
+        self.providerManager.registerColorProviders()
     }
 }
