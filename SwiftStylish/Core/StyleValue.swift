@@ -537,32 +537,32 @@ extension StyleValue
     /**
      Returns UIFontWeightRegular if fails.
      */
-    func toFontWeight() throws -> UIFontWeight
+    func toFontWeight() throws -> UIFont.Weight
     {
         let weightString = try self.stringValue()
         
         switch weightString
         {
         case "ultraLight":
-            return UIFontWeightUltraLight
+            return UIFont.Weight.ultraLight
         case "thin":
-            return UIFontWeightThin
+            return UIFont.Weight.thin
         case "light":
-            return UIFontWeightLight
+            return UIFont.Weight.light
         case "regilar":
-            return UIFontWeightRegular
+            return UIFont.Weight.regular
         case "medium":
-            return UIFontWeightMedium
+            return UIFont.Weight.medium
         case "semi-bold":
-            return UIFontWeightSemibold
+            return UIFont.Weight.semibold
         case "bold":
-            return UIFontWeightBold
+            return UIFont.Weight.bold
         case "heavy":
-            return UIFontWeightHeavy
+            return UIFont.Weight.heavy
         case "black":
-            return UIFontWeightBlack
+            return UIFont.Weight.black
         default:
-            return UIFontWeightRegular
+            return UIFont.Weight.regular
         }
     }
     
