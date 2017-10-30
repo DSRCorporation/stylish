@@ -76,6 +76,24 @@ class FontProviderTests: BaseProviderTests
         XCTAssert(textField.font == UIFont(name: "Arial", size: 12))
     }
     
+    func testProviderForTextView()
+    {
+        let textView = UITextView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        textView.font = UIFont.systemFont(ofSize: 1)
+        XCTAssert(textView.font?.familyName != "Arial")
+        
+        do
+        {
+            try SwiftStylisher.default.applyStyle(className: "." + self.key, forObject: textView)
+        }
+        catch let error
+        {
+            XCTFail(error.localizedDescription)
+        }
+        
+        XCTAssert(textView.font == UIFont(name: "Arial", size: 12))
+    }
+    
     func testProviderWithSystemFontForLabel()
     {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
