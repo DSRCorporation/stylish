@@ -276,6 +276,31 @@
             "selected-image": "testImage1"
         },
         
+        ".fontWithDescriptor":
+        {
+            "font":
+            {
+                "name": "ArialMT",
+                "size": 14,
+                "descriptor":{
+                    "symbolic-traits": ["traitBold", "traitItalic"]
+                }
+            }
+        },
+        
+        ".systemFontWithDescriptor":
+        {
+            "font":
+            {
+                "name": "ArialMT",
+                "size": 12,
+                "weight": "bold",
+                "descriptor":{
+                    "symbolic-traits": ["traitItalic"]
+                }
+            }
+        },
+        
         ".text-attributes":
         {
             "@state:normal":

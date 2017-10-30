@@ -94,6 +94,27 @@ class FontProviderTests: BaseProviderTests
         XCTAssert(label.font == UIFont.systemFont(ofSize: 12))
     }
     
+    // MARK: - Fonts with descriptor
+    
+    func testFontWithDescriptor()
+    {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        label.font = UIFont(name: "Arial", size: 1)
+        XCTAssert(label.font.familyName == "Arial")
+        
+        do
+        {
+            try SwiftStylisher.default.applyStyle(className: ".fontWithDescriptor", forObject: label)
+        }
+        catch let error
+        {
+            XCTFail(error.localizedDescription)
+        }
+        
+        XCTAssert(label.font.fontDescriptor.symbolicTraits.contains(.traitItalic))
+        XCTAssert(label.font.fontDescriptor.symbolicTraits.contains(.traitBold))
+    }
+    
     override func testProviderForObject()
     {
         super.testProviderForObject()
