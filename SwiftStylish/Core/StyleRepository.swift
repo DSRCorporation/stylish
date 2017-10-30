@@ -63,5 +63,6 @@ class StyleRepository
         self.providerManager.registerLayerProviders()
         self.providerManager.registerBehaviorProvider()
         self.providerManager.registerImageProviders()
+        self.providerManager.registerColorProviders()
     }
 }

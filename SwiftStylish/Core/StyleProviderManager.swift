@@ -52,6 +52,8 @@ enum StyleItemKeys: StyleItemKey
     case tintColor = "tint-color"                           // TintColorProvider
     case barTintColor = "bar-tint-color"                    // BarTintColorProvider
     case backIndicatorImage = "back-indicator-image"        // BackIndicatorImageProviderTests
+    case trackTintColor = "track-tint-color"                // ProgressViewProviderProtocol
+    case progressTintColor = "progress-tint-color"          // ProgressViewProviderProtocol
     case translucent = "translucent"                        // TranslucentProvider
     case dataDetectorType = "data-detector-type"            // DataDetectorTypeProvider
     case linkTextAttributes = "link-text-attributes"        // LinkTextAttributesProvider
@@ -152,5 +154,11 @@ extension StyleProviderManager
     final func registerImageProviders()
     {
         registerKey(key: StyleItemKeys.renderingMode.rawValue, withProvider: RenderingModeProvider())
+    }
+    
+    final func registerColorProviders()
+    {
+        registerKey(key: StyleItemKeys.progressTintColor.rawValue, withProvider: ProgressTintColorProvider())
+        registerKey(key: StyleItemKeys.trackTintColor.rawValue, withProvider: TrackTintColorProvider())
     }
 }
