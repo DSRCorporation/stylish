@@ -134,7 +134,12 @@ extension StyleValue
             return UIColor.clear
         }
         
-        return UIColor(stringValue) ?? UIColor.purple
+        guard let color = UIColor(stringValue) else
+        {
+            throw StyleValueError.invalidParameterValue(parameter: "Color", currentValue: stringValue, possibleValues: "Check project Wiki for possible color values.")
+        }
+        
+        return color
     }
 }
 
