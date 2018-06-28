@@ -849,7 +849,9 @@ extension StyleValue
             throw StyleValueError.missingRequiredParameter(name: "text", forTypeValue: "attributed-string")
         }
         
-        let attributedString = NSMutableAttributedString(string: text)
+        let localizedString = try StyleValue(value: text, bundle: self.bundle, variables: self.variables).toLocalizedString()
+        
+        let attributedString = NSMutableAttributedString(string: localizedString)
         
         guard let attrs = params["attributes"] else
         {
