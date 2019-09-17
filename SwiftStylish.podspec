@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftStylish"
-  s.version      = "0.91.0"
+  s.version      = "1.0.0"
   s.summary      = "Transparent and simple library for styling your applications."
 
   # This description is used to generate tags and improve search results.
@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, "8.4"
+  s.platform     = :ios, "11.0"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
