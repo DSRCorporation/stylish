@@ -42,3 +42,12 @@ extension FontProvider: TextFieldProviderProtocol
         textField.font = try value.toFont()
     }
 }
+
+extension FontProvider: TextViewProviderProtocol
+{
+    func applyItem(forTextView textView: UITextView, item: StyleItem, variables: StyleVariables?) throws
+    {
+        let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
+        textView.font = try value.toFont()
+    }
+}

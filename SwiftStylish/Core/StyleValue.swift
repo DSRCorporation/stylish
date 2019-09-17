@@ -134,7 +134,12 @@ extension StyleValue
             return UIColor.clear
         }
         
-        return UIColor(stringValue) ?? UIColor.purple
+        guard let color = UIColor(stringValue) else
+        {
+            throw StyleValueError.invalidParameterValue(parameter: "Color", currentValue: stringValue, possibleValues: "Check project Wiki for possible color values.")
+        }
+        
+        return color
     }
 }
 
@@ -477,21 +482,148 @@ extension StyleValue
             throw StyleValueError.missingRequiredParameter(name: "family", forTypeValue: "Font")
         }
         
-        guard let size = params["size"] as? Float else
+        guard let sizeValue = params["size"] as? Float else
         {
             throw StyleValueError.missingRequiredParameter(name: "size", forTypeValue: "Font")
         }
         
-        let sizeValue = StyleValue(value: size, bundle: self.bundle, variables: self.variables)
+        let size = try StyleValue(value: sizeValue, bundle: self.bundle, variables: self.variables).toCGFloat()
+    
+        var font = UIFont()
         
         if name.lowercased() == "system"
         {
-            return UIFont.systemFont(ofSize: try sizeValue.toCGFloat())
+            if let weightValue = params["weight"]
+            {
+                let weight = try StyleValue(value: weightValue, bundle: self.bundle, variables: self.variables).toFontWeight()
+                font = UIFont.systemFont(ofSize: size, weight: weight)
+            }
+            else
+            {
+                font = UIFont.systemFont(ofSize: size)
+            }
         }
         else
         {
-            return UIFont(name: name, size: try sizeValue.toCGFloat())!
+            guard let newFont = UIFont(name: name, size: size) else
+            {
+                 throw CommonError.commonError(message: "Failed to create UIFont with name: \(name), size: \(size)")
+            }
+            
+            font = newFont
         }
+
+        // Apply descriptor traits
+        guard let descriptorParams = params["descriptor"] as? [String: Any] else
+        {
+            return font
+        }
+
+        var descriptor = font.fontDescriptor
+
+        if let symbolicTraitsValue = descriptorParams["symbolic-traits"] as? [String]
+        {
+            let symbolicTraits = try StyleValue(value: symbolicTraitsValue,
+                                                bundle: self.bundle,
+                                                variables: self.variables).toFontDescriptorSymbolicTraits()
+
+            guard let newDescriptor = descriptor.withSymbolicTraits(symbolicTraits) else
+            {
+                throw StyleValueError.invalidParameterValue(parameter: "symbolic-traits",
+                                                            currentValue: String(describing: symbolicTraitsValue),
+                                                            possibleValues: "Check that symbolicTraits are compatible with font.")
+            }
+            descriptor = newDescriptor
+        }
+
+        return UIFont(descriptor: descriptor, size: size)
+    }
+    
+    /**
+     Returns UIFontWeightRegular if fails.
+     */
+    func toFontWeight() throws -> UIFont.Weight
+    {
+        let weightString = try self.stringValue()
+        
+        switch weightString
+        {
+        case "ultraLight":
+            return UIFont.Weight.ultraLight
+        case "thin":
+            return UIFont.Weight.thin
+        case "light":
+            return UIFont.Weight.light
+        case "regilar":
+            return UIFont.Weight.regular
+        case "medium":
+            return UIFont.Weight.medium
+        case "semi-bold":
+            return UIFont.Weight.semibold
+        case "bold":
+            return UIFont.Weight.bold
+        case "heavy":
+            return UIFont.Weight.heavy
+        case "black":
+            return UIFont.Weight.black
+        default:
+            return UIFont.Weight.regular
+        }
+    }
+    
+    func toFontDescriptorSymbolicTraits() throws -> UIFontDescriptorSymbolicTraits
+    {
+        var traits = UIFontDescriptorSymbolicTraits()
+        
+        guard let traitStrings = self.value as? [String] else
+        {
+            throw StyleValueError.invalidVariable(value: self.value, forVariable: "symbolic-traits")
+        }
+        
+        for trait in traitStrings
+        {
+            switch trait
+            {
+            case "traitBold":
+                traits.insert(.traitBold)
+            case "traitItalic":
+                traits.insert(.traitItalic)
+            case "traitExpanded":
+                traits.insert(.traitExpanded)
+            case "traitVertical":
+                traits.insert(.traitVertical)
+            case "traitCondensed":
+                traits.insert(.traitCondensed)
+            case "traitMonoSpace":
+                traits.insert(.traitMonoSpace)
+            case "traitUIOptimized":
+                traits.insert(.traitUIOptimized)
+            case "traitLooseLeading":
+                traits.insert(.traitLooseLeading)
+            case "traitTightLeading":
+                traits.insert(.traitTightLeading)
+            case "classMask":
+                traits.insert(.classMask)
+            case "classScripts":
+                traits.insert(.classScripts)
+            case "classClarendonSerifs":
+                traits.insert(.classClarendonSerifs)
+            case "classTransitionalSerifs":
+                traits.insert(.classTransitionalSerifs)
+            case "classSymbolic":
+                traits.insert(.classSymbolic)
+            case "classSansSerif":
+                traits.insert(.classSansSerif)
+            case "classSlabSerifs":
+                traits.insert(.classSlabSerifs)
+            case "classOrnamentals":
+                traits.insert(.classOrnamentals)
+            default:
+                continue
+            }
+        }
+        
+        return traits
     }
 }
 
