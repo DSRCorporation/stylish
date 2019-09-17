@@ -334,7 +334,7 @@ extension StyleValue
         }
     }
     
-    func toContentVerticalAlignment() throws -> UIControlContentVerticalAlignment
+    func toContentVerticalAlignment() throws -> UIControl.ContentVerticalAlignment
     {
         let stringValue = try self.stringValue()
         switch stringValue
@@ -347,7 +347,7 @@ extension StyleValue
         }
     }
     
-    func toContentHorizontalAlignment() throws -> UIControlContentHorizontalAlignment
+    func toContentHorizontalAlignment() throws -> UIControl.ContentHorizontalAlignment
     {
         let stringValue = try self.stringValue()
         switch stringValue
@@ -571,9 +571,9 @@ extension StyleValue
         }
     }
     
-    func toFontDescriptorSymbolicTraits() throws -> UIFontDescriptorSymbolicTraits
+    func toFontDescriptorSymbolicTraits() throws -> UIFontDescriptor.SymbolicTraits
     {
-        var traits = UIFontDescriptorSymbolicTraits()
+        var traits = UIFontDescriptor.SymbolicTraits()
         
         guard let traitStrings = self.value as? [String] else
         {
@@ -631,7 +631,7 @@ extension StyleValue
 
 extension StyleValue
 {
-    func toViewContentMode() throws -> UIViewContentMode
+    func toViewContentMode() throws -> UIView.ContentMode
     {
         let stringValue = try self.stringValue()
         switch stringValue
@@ -658,7 +658,7 @@ extension StyleValue
 
 extension StyleValue
 {
-    func toImageRenderingMode() throws -> UIImageRenderingMode
+    func toImageRenderingMode() throws -> UIImage.RenderingMode
     {
         let stringValue = try self.stringValue()
         switch stringValue
@@ -675,9 +675,9 @@ extension StyleValue
 
 extension StyleValue
 {
-    func toDividerImage() throws -> [(UIImage, UIControlState, UIControlState, UIBarMetrics)]
+    func toDividerImage() throws -> [(UIImage, UIControl.State, UIControl.State, UIBarMetrics)]
     {
-        var images = [(UIImage, UIControlState, UIControlState, UIBarMetrics)]()
+        var images = [(UIImage, UIControl.State, UIControl.State, UIBarMetrics)]()
         
         let params = try parametersSet()
         
@@ -713,7 +713,7 @@ extension StyleValue
         return images
     }
     
-    func toControlState() throws -> UIControlState
+    func toControlState() throws -> UIControl.State
     {
         let stringValue = try self.stringValue()
         switch stringValue
@@ -731,104 +731,104 @@ extension StyleValue
 
 extension StyleValue
 {
-    func toTextAttributes() throws -> [NSAttributedStringKey : Any]
+    func toTextAttributes() throws -> [NSAttributedString.Key : Any]
     {
         let params = try self.parameters()
         
-        var textAttributes: [NSAttributedStringKey: Any] = [:]
+        var textAttributes: [NSAttributedString.Key: Any] = [:]
         
         for (key, value) in params
         {
             if key == "font"
             {
                 let fontValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try fontValue.toFont(), forKey: NSAttributedStringKey.font)
+                textAttributes.updateValue(try fontValue.toFont(), forKey: NSAttributedString.Key.font)
             }
             else if key == "paragraph-style"
             {
                 let paragraphStyleValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try paragraphStyleValue.toParagraphStyle(), forKey: NSAttributedStringKey.paragraphStyle)
+                textAttributes.updateValue(try paragraphStyleValue.toParagraphStyle(), forKey: NSAttributedString.Key.paragraphStyle)
             }
             else if key == "text-color"
             {
                 let textColorValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try textColorValue.toColor(), forKey: NSAttributedStringKey.foregroundColor)
+                textAttributes.updateValue(try textColorValue.toColor(), forKey: NSAttributedString.Key.foregroundColor)
             }
             else if key == "background-color"
             {
                 let backgroundColorValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try backgroundColorValue.toColor(), forKey: NSAttributedStringKey.backgroundColor)
+                textAttributes.updateValue(try backgroundColorValue.toColor(), forKey: NSAttributedString.Key.backgroundColor)
             }
             else if key == "ligature"
             {
                 let ligatureValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try ligatureValue.toBool(), forKey: NSAttributedStringKey.ligature)
+                textAttributes.updateValue(try ligatureValue.toBool(), forKey: NSAttributedString.Key.ligature)
             }
             else if key == "kern"
             {
                 let kernValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try kernValue.toFloat(), forKey: NSAttributedStringKey.kern)
+                textAttributes.updateValue(try kernValue.toFloat(), forKey: NSAttributedString.Key.kern)
             }
             else if key == "strike-through"
             {
                 let strikeThroughValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try strikeThroughValue.toUInt(), forKey: NSAttributedStringKey.strikethroughStyle)
+                textAttributes.updateValue(try strikeThroughValue.toUInt(), forKey: NSAttributedString.Key.strikethroughStyle)
             }
             else if key == "underline"
             {
                 let underlineValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try underlineValue.toUInt(), forKey: NSAttributedStringKey.underlineStyle)
+                textAttributes.updateValue(try underlineValue.toUInt(), forKey: NSAttributedString.Key.underlineStyle)
             }
             else if key == "stroke-color"
             {
                 let strokeColorValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try strokeColorValue.toColor(), forKey: NSAttributedStringKey.strokeColor)
+                textAttributes.updateValue(try strokeColorValue.toColor(), forKey: NSAttributedString.Key.strokeColor)
             }
             else if key == "stroke-width"
             {
                 let strokeWidthValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try strokeWidthValue.toFloat(), forKey: NSAttributedStringKey.strokeWidth)
+                textAttributes.updateValue(try strokeWidthValue.toFloat(), forKey: NSAttributedString.Key.strokeWidth)
             }
             else if key == "shadow"
             {
                 let shadowValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
                 let (shadow, _) = try shadowValue.toShadowValues()
-                textAttributes.updateValue( shadow, forKey: NSAttributedStringKey.shadow)
+                textAttributes.updateValue( shadow, forKey: NSAttributedString.Key.shadow)
             }
             else if key == "text-effect"
             {
                 let textEffectValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try textEffectValue.toString(), forKey: NSAttributedStringKey.textEffect)
+                textAttributes.updateValue(try textEffectValue.toString(), forKey: NSAttributedString.Key.textEffect)
             }
             else if key == "link"
             {
                 let linkValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try linkValue.toNSURL(), forKey: NSAttributedStringKey.link)
+                textAttributes.updateValue(try linkValue.toNSURL(), forKey: NSAttributedString.Key.link)
             }
             else if key == "baseline-offset"
             {
                 let baselineOffsetValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try baselineOffsetValue.toCGFloat(), forKey: NSAttributedStringKey.baselineOffset)
+                textAttributes.updateValue(try baselineOffsetValue.toCGFloat(), forKey: NSAttributedString.Key.baselineOffset)
             }
             else if key == "underline-color"
             {
                 let underlineColorValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try underlineColorValue.toColor(), forKey: NSAttributedStringKey.underlineColor)
+                textAttributes.updateValue(try underlineColorValue.toColor(), forKey: NSAttributedString.Key.underlineColor)
             }
             else if key == "strike-through-color"
             {
                 let strikeThroughColorValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try strikeThroughColorValue.toColor(), forKey: NSAttributedStringKey.strikethroughColor)
+                textAttributes.updateValue(try strikeThroughColorValue.toColor(), forKey: NSAttributedString.Key.strikethroughColor)
             }
             else if key == "obliqueness"
             {
                 let obliquenessValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try obliquenessValue.toFloat(), forKey: NSAttributedStringKey.obliqueness)
+                textAttributes.updateValue(try obliquenessValue.toFloat(), forKey: NSAttributedString.Key.obliqueness)
             }
             else if key == "expansion"
             {
                 let expansionValue = StyleValue(value: value, bundle: self.bundle, variables: self.variables)
-                textAttributes.updateValue(try expansionValue.toFloat(), forKey: NSAttributedStringKey.expansion)
+                textAttributes.updateValue(try expansionValue.toFloat(), forKey: NSAttributedString.Key.expansion)
             }
             else
             {
@@ -873,7 +873,7 @@ extension StyleValue
             }
 
             var range: NSRange
-            var attrs: [NSAttributedStringKey : Any] = [:]
+            var attrs: [NSAttributedString.Key : Any] = [:]
             let textValue = StyleValue(value: text, bundle: self.bundle, variables: self.variables)
             
             if substringValue.lowercased() == "all"

@@ -22,8 +22,8 @@ extension UIImage
     
     func compare(withImage image: UIImage) -> Bool
     {
-        let dataImage = UIImagePNGRepresentation(self)
-        let dataImageTest = UIImagePNGRepresentation(image)
+        let dataImage = self.pngData()
+        let dataImageTest = image.pngData()
         
         return dataImage == dataImageTest
     }

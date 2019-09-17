@@ -48,9 +48,10 @@ func ==(lhs: StyleClass, rhs: StyleClass) -> Bool
 
 extension StyleClass: Hashable
 {
-    public var hashValue: Int { get {
-        return self.name.hashValue
-    }}
+    func hash(into hasher: inout Hasher)
+    {
+        hasher.combine(self.name.hashValue)
+    }
 }
 
 // MARK: - ApplyStyleForObjectProtocol

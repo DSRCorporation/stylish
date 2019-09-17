@@ -34,7 +34,7 @@ class AttributedPlaceholderTests: BaseProviderTests
         
         let attr = NSMutableAttributedString(string: "String1")
         let range = NSRange(location: 0, length: ("String1" as NSString).length)
-        attr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
+        attr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
         
         XCTAssert(textField.attributedPlaceholder != nil)
         XCTAssert(textField.attributedPlaceholder!.isEqual(to: attr))

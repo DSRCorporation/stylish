@@ -16,7 +16,7 @@ extension DividerImageProvider: SegmentedControlProviderProtocol
     func applyItem(forSegmentedControl segmentedControl: UISegmentedControl, item: StyleItem, variables: StyleVariables?) throws
     {
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
-        let params : [(UIImage, UIControlState, UIControlState, UIBarMetrics)] = try value.toDividerImage()
+        let params : [(UIImage, UIControl.State, UIControl.State, UIBarMetrics)] = try value.toDividerImage()
 
         for( image,leftState,rightState,barMetrics)  in params
         {
