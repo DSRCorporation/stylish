@@ -11,9 +11,9 @@ import UIKit
 */
 class TextAttributesProvider: BaseProvider
 {
-    fileprivate func merged(current: [NSAttributedStringKey: Any], new: [NSAttributedStringKey: Any]) -> [NSAttributedStringKey: Any]
+    fileprivate func merged(current: [NSAttributedString.Key: Any], new: [NSAttributedString.Key: Any]) -> [NSAttributedString.Key: Any]
     {
-        var merged: [NSAttributedStringKey: Any] = current
+        var merged: [NSAttributedString.Key: Any] = current
         
         for (k,v) in new
         {
@@ -30,7 +30,7 @@ extension TextAttributesProvider: SegmentedControlProviderProtocol
     {
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
         let textAttributes = try value.toTextAttributes()
-        let currentTextAttributes = segmentedControl.titleTextAttributes(for:item.state.toControlState()) as? [NSAttributedStringKey: Any] ?? [:]
+        let currentTextAttributes = segmentedControl.titleTextAttributes(for:item.state.toControlState()) ?? [:]
         let newTextAttributes = self.merged(current: currentTextAttributes, new: textAttributes)
         segmentedControl.setTitleTextAttributes(newTextAttributes, for: item.state.toControlState())
     }
@@ -62,11 +62,10 @@ extension TextAttributesProvider: BarButtonItemProviderProtocol
         let currentTextAttributes = barButtonItem.titleTextAttributes(for: item.state.toControlState()) ?? [:]
 
 
-        var converted = [NSAttributedStringKey: Any]()
+        var converted = [NSAttributedString.Key: Any]()
 
         currentTextAttributes.forEach { (key, value) in
-            let newKey = NSAttributedStringKey(rawValue: key)
-            converted[newKey] = value
+            converted[key] = value
         }
         
         let newTextAttributes = self.merged(current: converted, new: textAttributes)

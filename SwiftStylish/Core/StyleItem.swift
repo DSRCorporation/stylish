@@ -17,7 +17,7 @@ enum StyleItemState: String
     case disabled = "disabled"
     case highlighted = "highlighted"
     
-    func toControlState() -> UIControlState
+    func toControlState() -> UIControl.State
     {
         switch self
         {
@@ -52,10 +52,12 @@ struct StyleItem
 
 extension StyleItem: Hashable
 {
-    public var hashValue: Int { get {
-        return "\(String(describing: key))\(value.hashValue)\(state.rawValue)".hashValue
-    }}
+    func hash(into hasher: inout Hasher)
+    {
+        hasher.combine("\(String(describing: key))\(value.hash ?? 0)\(state.rawValue)".hashValue)
+    }
 }
+
 // MARK: - ApplyStyleForObjectProtocol
 
 extension StyleItem: ApplyStyleForObjectProtocol

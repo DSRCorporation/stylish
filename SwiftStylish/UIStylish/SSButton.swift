@@ -15,7 +15,7 @@ public class SSButton: UIButton
     {
         willSet(newValue)
         {
-            let state = newValue == false ? UIControlState.disabled : UIControlState.normal
+            let state = newValue == false ? UIControl.State.disabled : UIControl.State.normal
             self.update(withState: state)
         }
     }
@@ -24,7 +24,7 @@ public class SSButton: UIButton
     {
         willSet(newValue)
         {
-            let state = newValue == false ? UIControlState.normal : UIControlState.highlighted
+            let state = newValue == false ? UIControl.State.normal : UIControl.State.highlighted
             self.update(withState: state)
         }
     }
@@ -58,19 +58,19 @@ public class SSButton: UIButton
     
     // MARK: - Setters
     
-    public func setBorder(color: UIColor, forControlState state: UIControlState)
+    public func setBorder(color: UIColor, forControlState state: UIControl.State)
     {
         self.ss_borderColor[state.rawValue] = color
         self.update(withState: self.state)
     }
     
-    public func setBorder(width: CGFloat, forControlState state: UIControlState)
+    public func setBorder(width: CGFloat, forControlState state: UIControl.State)
     {
         self.ss_borderWidth[state.rawValue] = width
         self.update(withState: self.state)
     }
     
-    public func setCornerRadius(radius: CGFloat, forControlState state: UIControlState)
+    public func setCornerRadius(radius: CGFloat, forControlState state: UIControl.State)
     {
         self.ss_cornerRadius[state.rawValue] = radius
         self.update(withState: self.state)
@@ -78,17 +78,17 @@ public class SSButton: UIButton
     
     // MARK: - Getters
     
-    public func borderColor(atControlState state: UIControlState) -> UIColor?
+    public func borderColor(atControlState state: UIControl.State) -> UIColor?
     {
         return self.ss_borderColor[state.rawValue]
     }
     
-    public func borderWidth(atControlState state: UIControlState) -> CGFloat?
+    public func borderWidth(atControlState state: UIControl.State) -> CGFloat?
     {
         return self.ss_borderWidth[state.rawValue]
     }
     
-    public func cornerRadius(atControlState state: UIControlState) -> CGFloat?
+    public func cornerRadius(atControlState state: UIControl.State) -> CGFloat?
     {
         return self.ss_cornerRadius[state.rawValue]
     }
@@ -97,24 +97,24 @@ public class SSButton: UIButton
     
     @objc func highlightedBorder()
     {
-        let state = self.isEnabled == false ? UIControlState.disabled : UIControlState.highlighted
+        let state = self.isEnabled == false ? UIControl.State.disabled : UIControl.State.highlighted
         self.update(withState: state)
     }
     
     @objc func unHighlightedBorder()
     {
-        let state = self.isEnabled == false ? UIControlState.disabled : UIControlState.normal
+        let state = self.isEnabled == false ? UIControl.State.disabled : UIControl.State.normal
         self.update(withState: state)
     }
     
     // MARK: - private
     
-    private func update(withState state: UIControlState)
+    private func update(withState state: UIControl.State)
     {
         self.setupBorder(forState: state)
     }
     
-    private func setupBorder(forState state: UIControlState)
+    private func setupBorder(forState state: UIControl.State)
     {
         let color = self.borderColor(forState: state)
         let width = self.borderWidth(forState: state)
@@ -125,13 +125,13 @@ public class SSButton: UIButton
         self.layer.cornerRadius = cornerRadius
     }
     
-    private func borderColor(forState state: UIControlState) -> UIColor
+    private func borderColor(forState state: UIControl.State) -> UIColor
     {
         if let stateColor = self.ss_borderColor[state.rawValue]
         {
             return stateColor
         }
-        else if let normalStateColor = self.ss_borderColor[UIControlState.normal.rawValue]
+        else if let normalStateColor = self.ss_borderColor[UIControl.State.normal.rawValue]
         {
             return normalStateColor
         }
@@ -141,7 +141,7 @@ public class SSButton: UIButton
         }
     }
     
-    private func borderWidth(forState state: UIControlState) -> CGFloat
+    private func borderWidth(forState state: UIControl.State) -> CGFloat
     {
         if let stateWidth = self.ss_borderWidth[state.rawValue]
         {
@@ -157,7 +157,7 @@ public class SSButton: UIButton
         }
     }
     
-    private func cornerRadius(forState state: UIControlState) -> CGFloat
+    private func cornerRadius(forState state: UIControl.State) -> CGFloat
     {
         if let stateWidth = self.ss_cornerRadius[state.rawValue]
         {
