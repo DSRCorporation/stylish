@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class SSTextField: UITextField
+open class SSTextField: UITextField
 {
     private var ss_backgroundColor = [UInt: UIColor]()
     private var ss_borderColor = [UInt: UIColor]()

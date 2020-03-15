@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class SSButton: UIButton
+open class SSButton: UIButton
 {
     private var ss_borderColor = [UInt: UIColor]()
     private var ss_borderWidth = [UInt: CGFloat]()
