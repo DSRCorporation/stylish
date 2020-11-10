@@ -850,7 +850,7 @@ extension StyleValue
         }
         let textValue = StyleValue(value: text, bundle: self.bundle, variables: self.variables)
         let localizedText = try textValue.toLocalizedString()
-        let attributedString = NSMutableAttributedString(string: text)
+        let attributedString = NSMutableAttributedString(string: localizedText)
         
         guard let attrs = params["attributes"] else
         {
