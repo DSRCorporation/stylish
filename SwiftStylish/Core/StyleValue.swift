@@ -848,7 +848,8 @@ extension StyleValue
         {
             throw StyleValueError.missingRequiredParameter(name: "text", forTypeValue: "attributed-string")
         }
-        
+        let textValue = StyleValue(value: text, bundle: self.bundle, variables: self.variables)
+        let localizedText = try textValue.toLocalizedString()
         let attributedString = NSMutableAttributedString(string: text)
         
         guard let attrs = params["attributes"] else
@@ -874,16 +875,15 @@ extension StyleValue
 
             var range: NSRange
             var attrs: [NSAttributedString.Key : Any] = [:]
-            let textValue = StyleValue(value: text, bundle: self.bundle, variables: self.variables)
             
             if substringValue.lowercased() == "all"
             {
-                range = (try textValue.toLocalizedString() as NSString).range(of: try textValue.toLocalizedString())
+                range = (localizedText as NSString).range(of: localizedText)
             }
             else
             {
                 let substrValue = StyleValue(value: substringValue, bundle: self.bundle, variables: self.variables)
-                range = (try textValue.toLocalizedString() as NSString).range(of: try substrValue.toLocalizedString())
+                range = (localizedText as NSString).range(of: try substrValue.toLocalizedString())
             }
             
             let attrsValue = StyleValue(value: attributeValue, bundle: self.bundle, variables: self.variables)
@@ -1077,4 +1077,3 @@ extension StyleValue
         return stringValue
     }
 }
-
