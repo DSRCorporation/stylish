@@ -6,7 +6,7 @@ import UIKit
 /**
   Provides **textAttributes** value to subclasses of:
  - UISegmentedControl
- - UINavigationBar
+ - UINavigationBarAppearance
  - UIBarButtonItem
 */
 class TextAttributesProvider: BaseProvider
@@ -36,10 +36,9 @@ extension TextAttributesProvider: SegmentedControlProviderProtocol
     }
 }
 
-extension TextAttributesProvider: NavigationBarProviderProtocol
+extension TextAttributesProvider: NavigationBarAppearanceProviderProtocol
 {
-    func applyItem(forNavigationBar navigationBar: UINavigationBar, item: StyleItem, variables: StyleVariables?) throws
-    {
+    func applyItem(forNavigationBarAppearance appearance: UINavigationBarAppearance, item: StyleItem, variables: StyleVariables?) throws {
         guard item.state.toControlState() == .normal else
         {
             return
@@ -47,9 +46,9 @@ extension TextAttributesProvider: NavigationBarProviderProtocol
         
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
         let textAttributes = try value.toTextAttributes()
-        let currentTextAttributes = navigationBar.titleTextAttributes ?? [:]
+        let currentTextAttributes = appearance.titleTextAttributes
         let newTextAttributes = self.merged(current: currentTextAttributes, new: textAttributes)
-        navigationBar.titleTextAttributes = newTextAttributes
+        appearance.titleTextAttributes = newTextAttributes
     }
 }
 
