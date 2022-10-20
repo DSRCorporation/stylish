@@ -8,7 +8,7 @@ import UIKit
 /**
  Provides **barTintColor** value to subclasses of:
  - UITabBar
- - UINavigationBar
+ - UINavigationBarAppearance
  */
 class BarTintColorProvider: BaseProvider {}
 
@@ -21,11 +21,10 @@ extension BarTintColorProvider: TabBarProviderProtocol
     }
 }
 
-extension BarTintColorProvider: NavigationBarProviderProtocol
+extension BarTintColorProvider: NavigationBarAppearanceProviderProtocol
 {
-    func applyItem(forNavigationBar navigationBar: UINavigationBar, item: StyleItem, variables: StyleVariables?) throws
-    {
+    func applyItem(forNavigationBarAppearance appearance: UINavigationBarAppearance, item: StyleItem, variables: StyleVariables?) throws {
         let value = StyleValue(value: item.value, bundle: self.bundle, variables: variables)
-        navigationBar.barTintColor = try value.toColor()
+        appearance.backgroundColor = try value.toColor()
     }
 }

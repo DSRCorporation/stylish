@@ -2,9 +2,9 @@ SwiftStylish is a Swift framework for iOS that lets you style UI elements in a c
 
 # Requirements
 
-* iOS 8.4+
-* Xcode 8.3+
-* Swift 3.0+
+* iOS 13.0+
+* Xcode 11.0+
+* Swift 5.0+
 
 # Installation
 

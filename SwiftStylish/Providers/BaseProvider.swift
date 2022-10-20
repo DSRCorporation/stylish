@@ -126,6 +126,12 @@ open class BaseProvider: ApplyItemProviderProtocol
             return
         }
         
+        if let object = anyObject as? UINavigationBarAppearance, let provider = self as? NavigationBarAppearanceProviderProtocol
+        {
+            try provider.applyItem(forNavigationBarAppearance: object, item: item, variables: variables)
+            return
+        }
+        
         if let object = anyObject as? UIScrollView, let provider = self as? ScrollViewProviderProtocol
         {
             try provider.applyItem(forScrollView: object, item: item, variables: variables)
@@ -164,6 +170,11 @@ protocol ScrollViewProviderProtocol
 protocol NavigationBarProviderProtocol
 {
     func applyItem(forNavigationBar navigationBar: UINavigationBar, item: StyleItem, variables: StyleVariables?) throws
+}
+
+protocol NavigationBarAppearanceProviderProtocol
+{
+    func applyItem(forNavigationBarAppearance appearance: UINavigationBarAppearance, item: StyleItem, variables: StyleVariables?) throws
 }
 
 protocol TextViewProviderProtocol
